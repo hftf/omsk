@@ -1,0 +1,1 @@
+printf %s\\n $@ | grep -nFf - _players | cut -d ':' -f 1 | tr '\n' ' '
