@@ -1,0 +1,21 @@
+#!/usr/bin/perl -w
+
+my $val = shift;
+my $delim = ",";
+
+my $fh;
+open($fh, "_tossups");
+my @lines = <$fh>;
+my $lastLine = $lines[-1];
+my @arr = split($delim, $lastLine);
+close $fh;
+
+foreach my $player (@ARGV) {
+    $arr[$player] = "$val" + $arr[$player];
+}
+
+$lines[-1] = join($delim, @arr);
+
+open($fh, "+>", "_tossups");
+print $fh @lines;
+close $fh;
