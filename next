@@ -1,0 +1,9 @@
+np=$(wc -l < _players)
+if [ "0" = "$np" ]
+then
+    echo "Error: No players added"
+    exit 0
+fi
+
+ch=','
+printf %*s\\n "$np" | tr ' ' "$ch" >> _tossups
