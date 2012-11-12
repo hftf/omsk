@@ -1,0 +1,9 @@
+if [ $# -ne 1 ]
+then
+  echo "Error: Takes a single argument"
+  exit 0
+fi
+
+pl=$(players "$@")
+point 15 "$pl"
+next
