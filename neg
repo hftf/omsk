@@ -1,2 +1,4 @@
-IFS='-e '
-grep -nF $*;
+#IFS='-e '
+#grep -nF $*;
+pl=$(players "$@")
+point -5 "$pl"

@@ -3,3 +3,7 @@ then
   echo "Error: Takes a single argument"
   exit 0
 fi
+
+pl=$(players "$@")
+point 10 "$pl"
+next
