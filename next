@@ -5,5 +5,5 @@ then
     exit 0
 fi
 
-ch=','
-printf %*s\\n "$np" | tr ' ' "$ch" >> _tossups
+ch=",0"
+printf %*s\\n "$np" | sed "s/ /$ch/g" >> _tossups
