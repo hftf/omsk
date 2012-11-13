@@ -1,0 +1,30 @@
+#!/usr/bin/perl -w
+
+use Data::Dumper;
+
+my $delim = ",";
+my $longest = `wc -L < _players`;
+
+my $fh;
+open($fh, "_tossups");
+my @tossups = <$fh>;
+close $fh;
+open($fh, "_players");
+my @players = <$fh>;
+
+my @sums;
+
+foreach my $tossup (@tossups) {
+    my @arr = split($delim, $tossup);
+    foreach my $i (1 .. $#arr) {
+        $sums[$i - 1] += $arr[$i];
+    }
+}
+
+my @permutation = reverse sort { $sums[$a] <=> $sums[$b] } (0 .. $#sums);
+@sums = @sums[@permutation];
+@players = @players[@permutation];
+
+foreach my $i (0 .. $#players) {
+    printf("%-*s %d\n", $longest + 1, substr($players[$i], 0, -1), $sums[$i]);
+}
